@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./mix.css";
 
 const Login = () => {
+  const [passShow, setPassShow] = useState(false);
+
   return (
     <section>
       <div className="form_data">
@@ -21,20 +23,22 @@ const Login = () => {
             />
           </div>
 
+          {/* password show and hide logic */}
           <div className="form_input">
             <label htmlFor="password">Password</label>
             <div className="two">
               <input
-                type="password"
+                type={!passShow ? "password" : "text"}
                 name="password"
                 id="password"
                 placeholder="Enter your Password"
               />
-              <div className="showpass">
-                show
+              <div className="showpass" onClick={() => setPassShow(!passShow)}>
+                {!passShow ? "Show" : "Hide"}
               </div>
             </div>
           </div>
+
           <button className="btn">Login</button>
           <p>dont have an account? sign up</p>
         </form>
