@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./mix.css";
 
 const Login = () => {
@@ -40,7 +41,7 @@ const Login = () => {
           </div>
 
           <button className="btn">Login</button>
-          <p>dont have an account? sign up</p>
+          <p>dont have an account? <NavLink to='/register'>sign up</NavLink></p>
         </form>
       </div>
     </section>
