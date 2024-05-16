@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import dotenv from "dotenv";
 import cors from "cors";
+import router from './routes/router.js';
 
 
 
@@ -21,5 +22,9 @@ mongoose.connect(URL).then(()=>{
         console.log(`server listening on port : ${PORT}`);
     })
 }).catch(err=> console.log(err));
+
+
+app.use(express.json())
+app.use(router);
 
 
