@@ -4,7 +4,7 @@ import Avatar from "@mui/material/Avatar";
 
 const Header = () => {
   return (
-    <Header>
+    <header>
       <nav>
         <h1>Whats app</h1>
         <div className="avtar">
@@ -12,7 +12,7 @@ const Header = () => {
           <Avatar>H</Avatar>
         </div>
       </nav>
-    </Header>
+    </header>
   );
 };
 
