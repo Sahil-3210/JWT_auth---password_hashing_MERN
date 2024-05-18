@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
+import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
     fname:{
@@ -36,4 +37,15 @@ const userSchema = new mongoose.Schema({
         }
     ]
 })
+
+
+// hasing password
+// using mongocb pre method to hash the password before saving it in database.
+userSchema.pre("save", async function(next){
+    this.password = await bcrypt.hash(this.password,12);
+    this.cpassword = await bcrypt.hash(this.cpassword,12);
+    next();
+})
+
+
 export default mongoose.model('mern',userSchema);
