@@ -57,7 +57,12 @@ const Register = () => {
       })
 
       const res = await data.json();
-      console.log(res);
+      //console.log(res.status);
+      if(res.status===201){
+        alert("user register successfully")
+        // to clear the sign up page data after successful registration
+        setInpval({...inpval, fname:"", email:"", password:"", cpassword:""})
+      }
     }
   };
 
