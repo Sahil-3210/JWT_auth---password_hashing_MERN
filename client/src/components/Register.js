@@ -23,7 +23,7 @@ const Register = () => {
     });
   };
 
-  const addUserdata = (e) => {
+  const addUserdata = async (e) => {
     e.preventDefault();
 
     const { fname, password, email, cpassword } = inpval;
@@ -45,7 +45,19 @@ const Register = () => {
     } else if (password !== cpassword) {
       alert("password is not matching");
     } else {
-      console.log("success");
+      const data = await fetch("/register",{
+        method:'POST',
+        headers:{
+          "Content-Type": "application/json",
+
+        },
+        body:JSON.stringify({
+          fname,email,password,cpassword
+        })
+      })
+
+      const res = await data.json();
+      console.log(res);
     }
   };
 
