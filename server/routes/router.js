@@ -1,5 +1,6 @@
 import express from "express"
 import mern from "../models/userSchema.js"
+import bcrypt from "bcryptjs"
 
 const router = new express.Router();
 
@@ -32,4 +33,26 @@ router.post("/register", async(req, res)=>{
         res.status(500).json({error:"server error"})
     }
 })
+
+
+
+router.post("/login", async(req,res)=>{
+    //console.log(req.body);
+
+    const {email,password} = req.body;
+
+    if(!email|| !password){
+        res.status(422).json({error:"please fill all the fields"})
+    }
+    try{
+        const userValid = await mern.findOne({email:email})
+        if(userValid){
+            const isMatch = await bcrypt.compare(password,userValid.password)
+        }
+    }catch(err){
+        
+    }
+})
+
+
 export default router;

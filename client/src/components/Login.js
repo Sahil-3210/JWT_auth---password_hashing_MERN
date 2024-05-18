@@ -21,7 +21,7 @@ const Login = () => {
     });
   };
 
-  const loginUser = (e)=>{
+  const loginUser =async (e)=>{
     e.preventDefault();
 
 
@@ -36,7 +36,25 @@ const Login = () => {
     } else if (password.length < 6) {
       alert("password must be atleast 6 character");
     }else {
-      console.log("success");
+      //console.log("success");
+      const data = await fetch("/login",{
+        method:'POST',
+        headers:{
+          "Content-Type": "application/json",
+
+        },
+        body:JSON.stringify({
+          email,password,
+        })
+      })
+
+      const res = await data.json();
+      //console.log(res.status);
+      // if(res.status===201){
+      //   alert("user register successfully")
+      //   // to clear the sign up page data after successful registration
+      //   setInpval({...inpval, email:"", password:""})
+      // }
     }
 
   }
