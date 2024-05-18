@@ -25,7 +25,8 @@ router.post("/register", async(req, res)=>{
 
             // aftter password hashing in userSchema
             const storeData = await finalUser.save();
-            console.log(storeData);
+            //console.log(storeData);
+            res.status(201).json({status:201,storeData}) //?
         }
     }catch(err){
         res.status(500).json({error:"server error"})
