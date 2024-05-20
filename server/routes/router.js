@@ -48,6 +48,13 @@ router.post("/login", async(req,res)=>{
         const userValid = await mern.findOne({email:email})
         if(userValid){
             const isMatch = await bcrypt.compare(password,userValid.password)
+            if(!isMatch){
+                res.status(422).json({error:"invalid detail"})
+            }
+            else{
+                const token = await userValid.generateAuthtoken();
+                console.log(token);
+            }
         }
     }catch(err){
         
