@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken"
+const keysecret = "sahilrandivesahilrandivesahilrandive"
 
 const userSchema = new mongoose.Schema({
     fname:{
@@ -46,6 +48,20 @@ userSchema.pre("save", async function(next){
     this.cpassword = await bcrypt.hash(this.cpassword,12);
     next();
 })
+
+
+userSchema.methods.generateAuthToken = async function(){
+    try{
+        let token23  = jwt.sign({_id:this._id,keysecret},{
+            expiresIn:"1d"
+        })
+
+        this.tokens = this.tokens.concat({token:token23})
+        await this.save();
+        return token
+    }
+    catch(e){}
+}
 
 
 export default mongoose.model('mern',userSchema);
