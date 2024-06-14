@@ -64,7 +64,7 @@ const Login = () => {
       <div className="form_data">
         <div className="form_heading">
           <h1>Welcome to Login</h1>
-          <p>hi, we are you gald lud</p>
+          <p>hi, we are you</p>
         </div>
 
         <form>
