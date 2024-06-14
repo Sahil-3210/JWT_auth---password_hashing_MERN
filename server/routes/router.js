@@ -53,7 +53,16 @@ router.post("/login", async(req,res)=>{
             }
             else{
                 const token = await userValid.generateAuthtoken();
-                console.log(token);
+                
+
+                //cookie
+                res.cookie("usercookie", token,{
+                    expires: new Date(Date.now()+9000000),
+                    httpOnly:true
+                })
+
+                const result = {userValid,token}
+                res.status(201).json({status:201,result}) //?
             }
         }
     }catch(err){
